@@ -32,6 +32,9 @@ class ResourceRoute extends Route implements IResourceRouter
 		'OPTIONS' => self::OPTIONS,
 	);
 
+	/** @var int */
+	protected $flags;
+
 	/**
 	 * @param string $mask
 	 * @param array|string $metadata
@@ -56,7 +59,17 @@ class ResourceRoute extends Route implements IResourceRouter
 			}
 		}
 
-		parent::__construct($mask, $metadata, $flags);
+		$this->flags = $flags;
+		parent::__construct($mask, $metadata);
+	}
+
+
+	/**
+	 * override original flags which are deprecated
+	 */
+	public function getFlags(): int
+	{
+		return $this->flags;
 	}
 
 	/**
