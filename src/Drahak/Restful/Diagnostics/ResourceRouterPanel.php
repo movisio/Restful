@@ -1,6 +1,7 @@
 <?php
 namespace Drahak\Restful\Diagnostics;
 
+use Nette\Application\Routers\RouteList;
 use Nette\SmartObject;
 use Traversable;
 use Drahak\Restful\Application\IResourceRouter;
@@ -46,10 +47,10 @@ class ResourceRouterPanel implements IBarPanel
 	 * @param $routeList
 	 * @return array
 	 */
-	private function getResourceRoutes($routeList)
+	private function getResourceRoutes(RouteList $routeList)
 	{
 		static $resourceRoutes = array();
-		foreach ($routeList as $route) {
+		foreach ($routeList->getRouters() as $route) {
 			if ($route instanceof Traversable)
 				$this->getResourceRoutes($route);
 			if ($route instanceof IResourceRouter)

@@ -59,6 +59,24 @@ class Resource implements ArrayAccess, Serializable, IteratorAggregate, IResourc
 
 	/******************** Serializable ********************/
 
+    /**
+     * Serialize result set
+     * @return string
+     */
+    public function __serialize()
+    {
+        return $this->serialize();
+    }
+
+    /**
+     * Unserialize Resource
+     * @param string $serialized
+     */
+    public function __unserialize($serialized)
+    {
+       $this->unserialize($serialized);
+    }
+
 	/**
 	 * Serialize result set
 	 * @return string
@@ -83,7 +101,7 @@ class Resource implements ArrayAccess, Serializable, IteratorAggregate, IResourc
 	 * @param mixed $offset
 	 * @return bool
 	 */
-	public function offsetExists($offset)
+	public function offsetExists($offset) : bool
 	{
 		return isset($this->data[$offset]);
 	}
@@ -92,7 +110,7 @@ class Resource implements ArrayAccess, Serializable, IteratorAggregate, IResourc
 	 * @param mixed $offset
 	 * @return mixed
 	 */
-	public function offsetGet($offset)
+	public function offsetGet($offset) : mixed
 	{
 		return $this->data[$offset];
 	}
@@ -101,7 +119,7 @@ class Resource implements ArrayAccess, Serializable, IteratorAggregate, IResourc
 	 * @param mixed $offset
 	 * @param mixed $value
 	 */
-	public function offsetSet($offset, $value)
+	public function offsetSet($offset, $value) : void
 	{
 		if ($offset === NULL) {
 			$offset = count($this->data);
@@ -112,7 +130,7 @@ class Resource implements ArrayAccess, Serializable, IteratorAggregate, IResourc
 	/**
 	 * @param mixed $offset
 	 */
-	public function offsetUnset($offset)
+	public function offsetUnset($offset) : void
 	{
 		unset($this->data[$offset]);
 	}
@@ -123,7 +141,7 @@ class Resource implements ArrayAccess, Serializable, IteratorAggregate, IResourc
 	 * Get resource data iterator
 	 * @return ArrayIterator
 	 */
-	public function getIterator()
+	public function getIterator() : ArrayIterator
 	{
 		return new ArrayIterator($this->getData());
 	}

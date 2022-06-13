@@ -93,9 +93,9 @@ class Input implements IteratorAggregate, IInput, IDataProvider
 
 	/**
 	 * Get input data iterator
-	 * @return InputIterator
+	 * @return ArrayIterator
 	 */
-	public function getIterator()
+	public function getIterator() : ArrayIterator
 	{
 		return new ArrayIterator($this->getData());
 	}

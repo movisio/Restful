@@ -1,10 +1,8 @@
 <?php
 namespace Drahak\Restful\Application\Routes;
 
-use Drahak\Restful;
 use Drahak\Restful\Application\IResourceRouter;
 use Nette\Http;
-use Nette\Application;
 use Nette\Utils\Strings;
 use Nette\Application\Routers\Route;
 
@@ -33,7 +31,7 @@ class ResourceRoute extends Route implements IResourceRouter
 	);
 
 	/** @var int */
-	protected $flags;
+	protected int $flags;
 
 	/**
 	 * @param string $mask
